@@ -1,0 +1,9 @@
+@font-face {
+    font-family: 'zihun35hao-jindianyahei';
+    src: url('hinted-35--Regular.woff2') format('woff2'),
+        url('hinted-35--Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+

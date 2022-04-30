@@ -1,0 +1,191 @@
+{
+    "name" : "智能采购",
+    "appid" : "__UNI__12CA10F",
+    "description" : "应用描述",
+    "versionName" : "1.0.9",
+    "versionCode" : 105,
+    "transformPx" : false,
+    /* 5+App特有相关 */
+    "app-plus" : {
+        // 以下----忽略基座更新提醒
+        "compatible" : {
+            "ignoreVersion" : true
+        },
+        // 以上----忽略基座更新提醒
+        "runmode" : "liberate",
+        "usingComponents" : true,
+        "nvueCompiler" : "uni-app",
+        "nvueStyleCompiler" : "uni-app",
+        "compilerVersion" : 3,
+        /* 沉浸式小黑条 */
+        "safearea" : {
+            "bottom" : {
+                "offset" : "none"
+            }
+        },
+        "splashscreen" : {
+            "alwaysShowBeforeRender" : false,
+            "waiting" : false,
+            "autoclose" : false,
+            "delay" : 0
+        },
+        "modules" : {
+            "OAuth" : {},
+            "Payment" : {},
+            "Push" : {},
+            "Maps" : {},
+            "Geolocation" : {}
+        },
+        /* 应用发布信息 */
+        "distribute" : {
+            /* android打包配置 */
+            "android" : {
+                "permissions" : [
+                    "<uses-feature android:name=\"android.hardware.camera\"/>",
+                    "<uses-feature android:name=\"android.hardware.camera.autofocus\"/>",
+                    "<uses-permission android:name=\"android.permission.ACCESS_COARSE_LOCATION\"/>",
+                    "<uses-permission android:name=\"android.permission.ACCESS_FINE_LOCATION\"/>",
+                    "<uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\"/>",
+                    "<uses-permission android:name=\"android.permission.ACCESS_WIFI_STATE\"/>",
+                    "<uses-permission android:name=\"android.permission.CALL_PHONE\"/>",
+                    "<uses-permission android:name=\"android.permission.CAMERA\"/>",
+                    "<uses-permission android:name=\"android.permission.CHANGE_NETWORK_STATE\"/>",
+                    "<uses-permission android:name=\"android.permission.CHANGE_WIFI_STATE\"/>",
+                    "<uses-permission android:name=\"android.permission.FLASHLIGHT\"/>",
+                    "<uses-permission android:name=\"android.permission.INTERNET\"/>",
+                    "<uses-permission android:name=\"android.permission.MODIFY_AUDIO_SETTINGS\"/>",
+                    "<uses-permission android:name=\"android.permission.MOUNT_UNMOUNT_FILESYSTEMS\"/>",
+                    "<uses-permission android:name=\"android.permission.READ_LOGS\"/>",
+                    "<uses-permission android:name=\"android.permission.READ_PHONE_STATE\"/>",
+                    "<uses-permission android:name=\"android.permission.RECORD_AUDIO\"/>",
+                    "<uses-permission android:name=\"android.permission.VIBRATE\"/>",
+                    "<uses-permission android:name=\"android.permission.WAKE_LOCK\"/>",
+                    "<uses-permission android:name=\"android.permission.WRITE_CONTACTS\"/>",
+                    "<uses-permission android:name=\"android.permission.WRITE_EXTERNAL_STORAGE\"/>",
+                    "<uses-permission android:name=\"android.permission.WRITE_SETTINGS\"/>"
+                ]
+            },
+            /* ios打包配置 */
+            "ios" : {
+                "pushRegisterMode" : "manual",
+                "idfa" : false,
+                "privacyDescription" : {
+                    "NSCameraUsageDescription" : "需要用户上传照片，所以要调用相机功能",
+                    "NSPhotoLibraryUsageDescription" : "需要用户上传照片，所以要调用相册功能"
+                }
+            },
+            /* SDK配置 */
+            "sdkConfigs" : {
+                "speech" : {
+                    "ifly" : {}
+                },
+                "ad" : {},
+                "push" : {
+                    "unipush" : {}
+                },
+                "share" : {
+                    "sina" : {
+                        "appkey" : "",
+                        "appsecret" : "",
+                        "redirect_uri" : ""
+                    },
+                    "weixin" : {
+                        "appid" : "",
+                        "UniversalLinks" : ""
+                    }
+                },
+                "payment" : {},
+                "maps" : {
+                    "amap" : {
+                        "appkey_ios" : "c4d6f600449e9992173eaa73d945bfaf",
+                        "appkey_android" : "1e3e8bc48290cc4a349f43c36a783a4e"
+                    }
+                },
+                "geolocation" : {
+                    "amap" : {
+                        "__platform__" : [ "android" ],
+                        "appkey_ios" : "c4d6f600449e9992173eaa73d945bfaf",
+                        "appkey_android" : "1e3e8bc48290cc4a349f43c36a783a4e"
+                    }
+                }
+            },
+            "orientation" : [ "portrait-primary" ],
+            "splashscreen" : {
+                "androidStyle" : "default",
+                "android" : {
+                    "xxhdpi" : "",
+                    "xhdpi" : "",
+                    "hdpi" : ""
+                }
+            },
+            "icons" : {
+                "android" : {
+                    "hdpi" : "src/static/iconapp/72x72.png",
+                    "xhdpi" : "src/static/iconapp/96x96.png",
+                    "xxhdpi" : "src/static/iconapp/144x144.png",
+                    "xxxhdpi" : "src/static/iconapp/192x192.png"
+                },
+                "ios" : {
+                    "iphone" : {
+                        "app@2x" : "src/static/iconios/120x120.png",
+                        "app@3x" : "src/static/iconios/180x180.png",
+                        "spotlight@2x" : "src/static/iconios/80x80.png",
+                        "spotlight@3x" : "src/static/iconios/120x120.png",
+                        "settings@2x" : "src/static/iconios/58x58.png",
+                        "settings@3x" : "src/static/iconios/87x87.png",
+                        "notification@2x" : "src/static/iconios/40x40.png",
+                        "notification@3x" : "src/static/iconios/60x60.png"
+                    },
+                    "appstore" : "src/static/iconios/1024x1024.png"
+                }
+            }
+        }
+    },
+    /* 小程序特有相关 */
+    "mp-weixin" : {
+        "appid" : "",
+        "setting" : {
+            "urlCheck" : false
+        },
+        "usingComponents" : true,
+        "permission" : {
+            "scope.userLocation" : {
+                "desc" : "演示定位能力"
+            }
+        }
+    },
+    "mp-alipay" : {
+        "usingComponents" : true
+    },
+    "mp-baidu" : {
+        "usingComponents" : true
+    },
+    "mp-toutiao" : {
+        "usingComponents" : true
+    },
+    "h5" : {
+        "template" : "template.h5.html",
+        "devServer" : {
+            "proxy" : {
+                "/api" : {
+                    "target" : " http://clk.zhroot.com/ ",
+                    "pathRewrite" : {
+                        "^/api" : "/api"
+                    }
+                }
+            }
+        },
+        "router" : {
+            "mode" : "history",
+            "base" : ""
+        },
+        "sdkConfigs" : {
+            "maps" : {}
+        },
+        "async" : {
+            "timeout" : 20000
+        }
+    }
+}
+/* ios打包配置 *//* SDK配置 */
+

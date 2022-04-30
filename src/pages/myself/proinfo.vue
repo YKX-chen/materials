@@ -1,0 +1,217 @@
+<template>
+	<view class="page">
+		<view class="header">
+			<view class="promid">
+				<view class="protop">
+					<text>项目</text>
+				</view>
+				<view class="probom">
+					<view class="lis">
+						<text>项目名称</text>
+						<text>{{projectData.F_Name}}</text>
+					</view>
+					<view class="lis">
+						<text>项目简称</text>
+						<text>{{projectData.F_Abbreviation}}</text>
+					</view>
+					<view class="lis">
+						<text>客户</text>
+						<text>{{projectData.F_Customer}}</text>
+					</view>
+					<view class="lis">
+						<text>项目类型</text>
+						<text>{{projectData.F_ProType}}</text>
+					</view>
+					<view class="lis">
+						<text>项目规模（万元）</text>
+						<text>{{projectData.F_ProScale}}</text>
+					</view>
+					<view class="lis">
+						<text>工期起始时间</text>
+						<text>{{projectData.F_StartTime}}</text>
+					</view>
+					<view class="lis">
+						<text>工期结束时间</text>
+						<text>{{projectData.F_EndTime}}</text>
+					</view>
+					<view class="lis">
+						<text>坐标点</text>
+						<text>{{projectData.F_Remark2}}</text>
+					</view>
+					<view class="lis">
+						<text>项目经理</text>
+						<text>{{projectData.F_ProManage}}</text>
+					</view>
+					<view class="lis">
+						<text>项目成员</text>
+						<text>{{prolistinfo.F_Remark1}}</text>
+					</view>
+					<view class="lis">
+						<text>省/市/区</text>
+						<text v-if="projectData.F_Province == null"></text>
+						<text v-if="projectData.F_Province != null">{{projectData.F_Province}}/{{projectData.F_City}}/{{projectData.F_Area}}</text>
+					</view>
+					<view class="lis">
+						<text>对接人</text>
+						<text>{{projectData.F_DockUser}}</text>
+					</view>
+					<view class="lis">
+						<text>对接电话</text>
+						<text>{{projectData.F_DockPhone}}</text>
+					</view>
+					<view class="lis">
+						<text>详细地址</text>
+						<text>{{projectData.F_Address}}</text>
+					</view>
+					<view class="list">
+						<text>项目介绍</text>
+						<!-- <view v-if="projectData.F_ProIntroduction != null"><textarea v-model="projectData.F_ProIntroduction"
+							placeholder-class="placeinput" disabled maxlength="100" /></view> -->
+						<text v-if="projectData.F_ProIntroduction != null">{{projectData.F_ProIntroduction}}</text>
+						<text v-if="projectData.F_ProIntroduction == null"></text>
+					</view>
+				</view>
+			</view>
+		</view>
+		<view class="fot"></view>
+	</view>
+</template>
+
+<script>
+	export default {
+		data() {
+			return {
+				projectData: {},
+				prolistinfo: {}
+			}
+		},
+		onLoad(options) {
+			this.projectData = JSON.parse(options.data)
+			this.projectData.F_StartTime = this.projectData.F_StartTime.slice(0, 10)
+			this.projectData.F_EndTime = this.projectData.F_EndTime.slice(0, 10)
+			this.proinfo()
+		},
+		//顶部导航按钮-----修改
+		onNavigationBarButtonTap(e) {
+			uni.reLaunch({
+				url: "prolist"
+			})
+		},
+		//物理返回键
+		onBackPress(options) {
+			uni.reLaunch({
+				url: "prolist"
+			})
+			return true
+		},
+		methods: {
+			proinfo() {
+				uni.request({
+					url: this.url + '/WebApiInterface/Project/GetProjectInfo',
+					method: "POST",
+					data: {
+						id: this.projectData.F_Id
+					},
+					success: (res) => {
+						this.prolistinfo = res.data.Data
+						console.log(this.prolistinfo, '详情')
+
+						this.projectData.F_Remark2 = this.prolistinfo.F_Remark2
+						// if (this.projectData.F_Province) {
+						// 	this.projectData.F_Province = this.projectData.F_Province + '/' + this.projectData
+						// 		.F_City + '/' + this.projectData.F_Area
+						// }
+						// console.log(this.projectData, '详情projectData')
+					}
+				})
+			},
+		}
+	}
+</script>
+
+<style lang="scss" scoped>
+	.page {
+		.header {
+			display: inline-block;
+			display: flex;
+			margin: auto;
+			width: 90%;
+			margin-top: 30rpx;
+			border-radius: 9rpx;
+			background-color: #FFFFFF;
+
+			.promid {
+				margin: 50rpx 30rpx;
+				width: 90%;
+				display: flex;
+				flex-direction: column;
+
+				.protop {
+					padding-bottom: 20rpx;
+					font-size: 34rpx;
+					font-family: PingFang SC;
+					font-weight: bold;
+					color: #262626;
+					border-bottom: 1rpx solid #fafafa;
+				}
+
+				.probom {
+					width: 100%;
+					font-size: 28rpx;
+					font-family: PingFang SC;
+					font-weight: 400;
+					color: #666666;
+
+					.lis {
+						display: flex;
+						flex-direction: row;
+						justify-content: space-around;
+						padding: 20rpx 0;
+						border-bottom: 1rpx solid #fafafa;
+
+						text:nth-child(1) {
+							width: 40%;
+						}
+
+						text:nth-child(2) {
+							width: 60%;
+							text-align: right;
+							color: #333333;
+						}
+					}
+
+					.list {
+						display: flex;
+						flex-direction: column;
+						margin-top: 20rpx;
+						// padding-bottom: 120rpx;
+						width: 100%;
+
+						text:nth-child(2) {
+							margin-top: 20rpx;
+							width: 100%;
+							word-wrap: break-word;
+							word-break: normal;
+						}
+
+						textarea {
+							width: 100%;
+							height: 160rpx;
+							font-size: 28rpx;
+							font-family: PingFang SC;
+							font-weight: 400;
+							margin-top: 20rpx;
+							margin-bottom: 20rpx;
+						}
+					}
+
+				}
+			}
+		}
+
+		.fot {
+			width: 100%;
+			height: 50rpx;
+		}
+	}
+</style>
